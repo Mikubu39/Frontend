@@ -1,0 +1,554 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset và thiết lập cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Theme Light (mặc định) */
+body.light {
+  background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+  background-size: cover;
+  background-color: #e6f0fa;
+}
+
+body.light .App {
+  min-height: 100vh;
+  padding: 30px; /* Tăng padding để có thêm không gian */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+body.light .login-container,
+body.light .dashboard {
+  position: relative; /* Thêm position: relative để làm tham chiếu cho logout-btn */
+  max-width: 1400px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Theme Dark */
+body.dark {
+  background: url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+  background-size: cover;
+  background-color: #1a1a1a;
+}
+
+body.dark .App {
+  min-height: 100vh;
+  padding: 30px; /* Tăng padding */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+body.dark .login-container,
+body.dark .dashboard {
+  position: relative;
+  max-width: 1400px;
+  width: 100%;
+  background: rgba(30, 30, 30, 0.95);
+  color: #e0e0e0;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+body.dark .login-container h1,
+body.dark .dashboard h1,
+body.dark .section-title,
+body.dark .student-item h3,
+body.dark .total-debt h2 {
+  color: #ffffff;
+}
+
+body.dark .tuition-item,
+body.dark .student-item,
+body.dark .admin-form,
+body.dark .total-debt {
+  background: #2a2a2a;
+}
+
+body.dark .tuition-item p,
+body.dark .due-date,
+body.dark .paid-date {
+  color: #e0e0e0;
+}
+
+body.dark input {
+  background: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+body.dark input:focus {
+  border-color: #1a73e8;
+}
+
+/* Nút chuyển theme */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 24px; /* Tăng kích thước nút */
+  background: #1a3c6d;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem; /* Tăng font-size */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Tăng gap */
+  transition: background 0.3s ease;
+}
+
+body.dark .theme-toggle {
+  background: #1a73e8;
+}
+
+.theme-toggle:hover {
+  background: #15325a;
+}
+
+body.dark .theme-toggle:hover {
+  background: #1557b0;
+}
+
+/* Container chung */
+.login-container:hover,
+.dashboard:hover {
+  transform: translateY(-5px);
+}
+
+/* Tiêu đề */
+.login-container h1,
+.dashboard h1 {
+  text-align: center;
+  color: #1a3c6d;
+  font-size: 2.5rem; /* Tăng font-size từ 2rem */
+  font-weight: 600;
+  margin-bottom: 30px; /* Tăng margin-bottom */
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Tăng letter-spacing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; /* Tăng gap */
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Tăng gap từ 15px */
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group i {
+  position: absolute;
+  left: 15px;
+  color: #666;
+  font-size: 1.2rem; /* Tăng kích thước icon */
+}
+
+body.dark .input-group i {
+  color: #bbb;
+}
+
+.input-group select {
+  padding: 14px 14px 14px 45px; /* Tăng padding */
+  border: 1px solid #e0e0e0;
+  border-radius: 10px; /* Tăng border-radius */
+  font-size: 1.1rem; /* Tăng font-size */
+  transition: border-color 0.3s ease;
+  width: 100%;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.input-group select:focus {
+  outline: none;
+  border-color: #1a3c6d;
+  box-shadow: 0 0 5px rgba(26, 60, 109, 0.2);
+}
+
+body.dark .input-group select {
+  background: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+body.dark .input-group select:focus {
+  border-color: #1a73e8;
+}
+
+input {
+  padding: 14px 14px 14px 45px; /* Tăng padding */
+  border: 1px solid #e0e0e0;
+  border-radius: 10px; /* Tăng border-radius */
+  font-size: 1.1rem; /* Tăng font-size */
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+
+input:focus {
+  outline: none;
+  border-color: #1a3c6d;
+  box-shadow: 0 0 5px rgba(26, 60, 109, 0.2);
+}
+
+/* Nút */
+button {
+  padding: 14px; /* Tăng padding từ 12px */
+  background: #1a3c6d;
+  color: white;
+  border: none;
+  border-radius: 10px; /* Tăng border-radius */
+  font-size: 1.1rem; /* Tăng font-size */
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Tăng gap */
+}
+
+button:hover {
+  background: #15325a;
+  transform: translateY(-2px);
+}
+
+/* Thông báo */
+.message {
+  padding: 14px; /* Tăng padding */
+  background: #e7f3e7;
+  color: #2e7d32;
+  border-radius: 10px; /* Tăng border-radius */
+  font-size: 1rem; /* Tăng font-size */
+  text-align: center;
+  margin-bottom: 25px; /* Tăng margin-bottom */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Tăng gap */
+}
+
+body.dark .message {
+  background: #2e7d32;
+  color: #e0e0e0;
+}
+
+/* Tổng nợ */
+.total-debt {
+  background: #f5f7fa;
+  padding: 25px; /* Tăng padding từ 20px */
+  border-radius: 12px; /* Tăng border-radius */
+  text-align: center;
+  margin-bottom: 40px; /* Tăng margin-bottom */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.total-debt h2 {
+  color: #1a3c6d;
+  font-size: 1.8rem; /* Tăng font-size từ 1.5rem */
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; /* Tăng gap */
+}
+
+/* Danh sách khoản nợ và lịch sử */
+.tuition-list,
+.history-list,
+.student-item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Tăng gap từ 15px */
+}
+
+.tuition-item {
+  background: #f9f9f9;
+  padding: 20px; /* Tăng padding từ 15px */
+  border-radius: 12px; /* Tăng border-radius */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.tuition-item:hover {
+  transform: translateY(-3px);
+}
+
+.tuition-item p {
+  margin: 0;
+  font-size: 1rem; /* Tăng font-size từ 0.95rem */
+  color: #333;
+}
+
+.tuition-item button {
+  padding: 10px 20px; /* Tăng padding từ 8px 16px */
+  font-size: 1rem; /* Tăng font-size từ 0.9rem */
+}
+
+/* Student Item (Admin Dashboard) */
+.student-item {
+  background: #f5f7fa;
+  padding: 25px; /* Tăng padding từ 20px */
+  border-radius: 12px; /* Tăng border-radius */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.student-item h3 {
+  color: #1a3c6d;
+  font-size: 1.4rem; /* Tăng font-size từ 1.2rem */
+  margin-bottom: 15px; /* Tăng margin-bottom */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Tăng gap */
+}
+
+/* Style bổ sung */
+.section-title {
+  color: #1a3c6d;
+  font-size: 1.5rem; /* Tăng font-size từ 1.3rem */
+  font-weight: 500;
+  margin: 25px 0 15px; /* Tăng margin */
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 8px; /* Tăng padding-bottom */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Tăng gap */
+}
+
+.due-date,
+.paid-date {
+  color: #666;
+  font-size: 1rem; /* Tăng font-size từ 0.9rem */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Tăng gap */
+}
+
+/* Style cho bảng */
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  padding: 12px 18px; /* Tăng padding từ 8px */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  font-size: 1rem; /* Tăng font-size từ 0.95rem */
+}
+
+body.dark table {
+  background: #2a2a2a;
+}
+
+th {
+  background: #1a3c6d;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 14px 18px; /* Tăng padding */
+}
+
+body.dark th {
+  background: #1a73e8;
+}
+
+tr:nth-child(even) {
+  background: #f5f7fa;
+}
+
+body.dark tr:nth-child(even) {
+  background: #333;
+}
+
+tr:hover {
+  background: #e6f0fa;
+}
+
+body.dark tr:hover {
+  background: #444;
+}
+
+.table-actions {
+  display: flex;
+  gap: 12px; /* Tăng gap từ 10px */
+}
+
+.table-actions button {
+  padding: 10px 14px; /* Tăng padding từ 8px 12px */
+  font-size: 1rem; /* Tăng font-size từ 0.9rem */
+}
+
+.tabs {
+  display: flex;
+  gap: 12px; /* Tăng gap từ 10px */
+  margin-bottom: 25px; /* Tăng margin-bottom */
+}
+
+.tab {
+  padding: 12px 25px; /* Tăng padding từ 10px 20px */
+  background: #e0e0e0;
+  border: none;
+  border-radius: 10px 10px 0 0; /* Tăng border-radius */
+  font-size: 1.1rem; /* Tăng font-size từ 1rem */
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+body.dark .tab {
+  background: #444;
+  color: #e0e0e0;
+}
+
+.tab.active {
+  background: #1a3c6d;
+  color: white;
+}
+
+body.dark .tab.active {
+  background: #1a73e8;
+}
+
+.tab-content {
+  padding: 25px; /* Tăng padding từ 20px */
+  background: #f5f7fa;
+  border-radius: 0 10px 10px 10px; /* Tăng border-radius */
+}
+
+body.dark .tab-content {
+  background: #2a2a2a;
+}
+
+.change-password-btn {
+  padding: 12px 25px; /* Tăng padding từ 10px 20px */
+  background: #1a3c6d;
+  color: white;
+  border: none;
+  border-radius: 10px; /* Tăng border-radius */
+  font-size: 1.1rem; /* Tăng font-size từ 1rem */
+  cursor: pointer;
+  margin-bottom: 25px; /* Tăng margin-bottom */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Tăng gap */
+}
+
+body.dark .change-password-btn {
+  background: #1a73e8;
+}
+
+.change-password-form {
+  background: #f5f7fa;
+  padding: 25px; /* Tăng padding từ 20px */
+  border-radius: 10px; /* Tăng border-radius */
+  margin-bottom: 25px; /* Tăng margin-bottom */
+}
+
+body.dark .change-password-form {
+  background: #2a2a2a;
+}
+
+.change-password-form h3 {
+  margin-top: 0;
+  font-size: 1.4rem; /* Tăng font-size */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Tăng gap */
+}
+
+.logout-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.3s;
+  z-index: 10; /* Đảm bảo nút luôn ở trên cùng */
+}
+
+.logout-btn:hover {
+  background: #c0392b;
+}
+
+.logout-btn i {
+  font-size: 1rem;
+}
+
+.filter-container {
+  display: flex;
+  gap: 20px; /* Tăng gap từ 15px */
+  margin-bottom: 25px; /* Tăng margin-bottom từ 20px */
+}
+
+.filter-container .input-group {
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-container,
+  .dashboard {
+    padding: 25px; /* Tăng padding từ 20px */
+  }
+
+  .login-container h1,
+  .dashboard h1 {
+    font-size: 2rem; /* Tăng font-size từ 1.5rem */
+  }
+
+  .tuition-item {
+    flex-direction: column;
+    gap: 15px; /* Tăng gap từ 10px */
+    text-align: center;
+  }
+
+  .tuition-item button {
+    width: 100%;
+  }
+
+  .theme-toggle {
+    top: 15px; /* Tăng top từ 10px */
+    right: 15px; /* Tăng right từ 10px */
+    padding: 10px 18px; /* Tăng padding từ 8px 15px */
+    font-size: 0.9rem; /* Tăng font-size từ 0.8rem */
+  }
+}
